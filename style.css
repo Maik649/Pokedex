@@ -1,0 +1,30 @@
+:root{
+      --primary-bg-color: rgb(56, 56, 92); /* global scope */
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+    background-color: var(--primary-bg-color);
+    padding: 10px;
+}
+.logo-container{
+    width: 200px;
+    height: 70px;
+    
+}
+
+.logo-container img{
+    width: 100px;
+}
+
+main{
+    height: 100%;
+}
