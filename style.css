@@ -1,30 +1,47 @@
-:root{
-      --primary-bg-color: rgb(56, 56, 92); /* global scope */
+@import url("./css/varieablen.css");
+@import url("./css/base.css");
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    margin: 0;
-    padding: 0;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 85px;
+  background-color: var(--primary-bg-color);
+  padding: var(--primary-pedding);
 }
 
-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 85px;
-    background-color: var(--primary-bg-color);
-    padding: 10px;
-}
-.logo-container{
-    width: 200px;
-    height: 70px;
-    
+.header-logo-container {
+  width: 200px;
+  height: 70px;
 }
 
-.logo-container img{
-    width: 100px;
+.header-logo-container img {
+  width: 100px;
 }
 
-main{
-    height: 100%;
+main {
+  height: 100vh;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85px;
+  background-color: var(--primary-bg-color);
+  padding: var(--primary-pedding);
+}
+
+.footer-logo-container {
+  width: 200px;
+  height: 70px;
+}
+
+.footer-logo-container img {
+  width: 90px;
 }
