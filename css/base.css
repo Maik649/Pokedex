@@ -16,3 +16,36 @@
   border-bottom: 3px solid rgb(117, 200, 255);
   scale: 1.01;
 }
+
+.container-xxl{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  margin: 0 auto !important;
+  max-width: 1440px !important;
+  padding: 0 !important;
+}
+
+.card {
+  margin: 1rem;
+  width: 280px;
+}
+
+.card-id{
+ padding: 15px;
+ background-color: var(--bs-card-cap-bg);
+ margin-bottom: 0;
+ color: var(--bs-primary);
+}
+
+.card-header{
+  display: flex;
+  justify-content: center;
+}
+
+.types-content{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
