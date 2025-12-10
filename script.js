@@ -1,8 +1,10 @@
-let offset = 0;
 let limit = 20;
-const BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offsets=${offset}`;
+let offset = 0;
+let BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offsets=${offset}`;
 let pocedexCard = [];
 let allPokemons= [];
+let inputValue = document.getElementById("search");
+let dialogCard = document.getElementById("card-1");
 
 async function init() {
     await pokemonCard();
@@ -32,4 +34,28 @@ async function pokemonCard() {
   let typeName_1;
     types.length == 1 ? typeName :  typeName_1 = types[1].type.name;
     let typeName_2 = typeName_1 == undefined ? "": typeName_1;
-    document.getElementById("pocemons").innerHTML += await getPocemonCard(poceName, poceImg, poceId, typeName, typeName_2);}}
+    document.getElementById("pocemons").innerHTML += getPocemonCard(poceId, poceImg, poceName, typeName, typeName_2);
+  }}
+
+  async function searchPocemon(event) {
+  await loadPocedex(pocedexCard);
+     event.stopPropagation();
+    for (let index = 0; index < allPokemons.length; index++) {
+      if (inputValue.value == allPokemons[index].name) {
+        console.log(allPokemons[index].id);  
+     }
+    }
+  } 
+  
+  async function morePoc() {
+    limit = limit += 20;
+    offset = offset += 20;
+    BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+    document.getElementById("pocemons").innerHTML='';
+    await pokemonCard();
+  }
+
+  async function cardDialog(poceId, poceImg, poceName, typeName, typeName_2){
+    document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId, poceImg, poceName, typeName, typeName_2);
+    dialogCard.showModal();
+  }
