@@ -26,11 +26,9 @@ header {
 
 main {
   margin: 0 auto;
-  height: 100%;
+  height: auto;
   width: 100%;
-  bottom: 0;
-  background-color: rgba(228, 228, 228, 0.582);
-  min-height: calc(100vh + 170px);
+  background-color: rgba(228, 228, 228, 0.582)
 }
 
 .container{
@@ -44,7 +42,6 @@ footer {
   height: 85px;
   background-color: var(--primary-bg-color);
   padding: var(--primary-pedding);
-  
 }
 
 .footer-logo-container {
