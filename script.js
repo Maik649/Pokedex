@@ -1,6 +1,6 @@
 let limit = 20;
-let offset = 0;
-let BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offsets=${offset}`;
+let offsset = 0;
+let BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offsets=${offsset}`;
 let pocedexCard = [];
 let allPokemons= [];
 let inputValue = document.getElementById("search");
@@ -18,44 +18,68 @@ async function loadPocedex() {
   } catch (error) {
     console.error(`Es ist ein Fehler Aufgetreten`);
   }
-}
 
-async function pokemonCard() {
-  await loadPocedex(pocedexCard);
+}async function pokemonCard() {
+  showLoader();
+  try {
+    await loadPocedex();
   for (let i = 0; i < pocedexCard.length; i++) {
     let response = await fetch(pocedexCard[i].url);
     let singledata = await response.json();
-    allPokemons.push(singledata);
+    allPokemons.push(singledata); allPokemons;
     let poceId = allPokemons[i].id
     let poceName =  allPokemons[i].name;
     let poceImg = allPokemons[i].sprites.front_default;
     let types = allPokemons[i].types;
-    let typeName = types[0].type.name;
-  let typeName_1;
+    let typeName = types[0].type.name; let typeName_1;
     types.length == 1 ? typeName :  typeName_1 = types[1].type.name;
     let typeName_2 = typeName_1 == undefined ? "": typeName_1;
-    document.getElementById("pocemons").innerHTML += getPocemonCard(poceId, poceImg, poceName, typeName, typeName_2);
-  }}
+    document.getElementById("pocemons").innerHTML += getPocemonCard(poceId, poceImg, poceName, typeName, typeName_2, i);
+  } }finally {
+    hideLoader();
+  }
+}
 
   async function searchPocemon(event) {
-  await loadPocedex(pocedexCard);
+  await loadPocedex(allPokemons);
      event.stopPropagation();
-    for (let index = 0; index < allPokemons.length; index++) {
-      if (inputValue.value == allPokemons[index].name) {
-        console.log(allPokemons[index].id);  
-     }
+    for (let i = 0; i < allPokemons.length; i++) {
+      let poceId = allPokemons[i].id;
+       let poceName = allPokemons[i].name;
+       let poceImg = allPokemons[i].sprites.front_default;
+      if (inputValue.value == allPokemons[i].name || inputValue.value == allPokemons[i].id) {
+        document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId, poceImg, poceName);
+      cardDialog(poceId, poceImg, poceName);
     }
   } 
-  
-  async function morePoc() {
+}
+   // todo normales nachladen ohne alles neu zu rendern???
+  async function morePocemon() {
+   document.getElementById("pocemons").innerHTML="";
     limit = limit += 20;
-    offset = offset += 20;
-    BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
-    document.getElementById("pocemons").innerHTML='';
+    offsset = offsset += 20;
+    BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offsset}`;
     await pokemonCard();
+    window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+  }
+// todo passende variablen reinrendern
+  async function cardDialog(poceId,poceImg, poceName) {
+    document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId,poceImg, poceName);
+    dialogCard.showModal(poceId,poceImg, poceName);
   }
 
-  async function cardDialog(poceId, poceImg, poceName, typeName, typeName_2){
-    document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId, poceImg, poceName, typeName, typeName_2);
-    dialogCard.showModal();
+  function showLoader() {
+    const overlay = document.getElementById("loader-overlay");
+    overlay?.removeAttribute("hidden");
+    overlay?.setAttribute("aria-busy", "true");
+    document.getElementById("pocemons")?.setAttribute("aria-hidden", "true");
+  }
+
+  function hideLoader() {
+    setTimeout(() => {
+    const overlay = document.getElementById("loader-overlay")
+    overlay?.setAttribute("hidden", "")
+    overlay?.setAttribute("aria-busy", "false")
+    document.getElementById("pocemons")?.removeAttribute("aria-hidden")
+    }, 800)
   }
