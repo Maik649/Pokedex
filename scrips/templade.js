@@ -1,4 +1,4 @@
-function getPocemonCard( poceId,poceImg,poceName,typeName,typeName_2) {
+function getPocemonCard(poceId,poceImg,poceName,typeName,typeName_2) {
   return `<div onclick="cardDialog(${poceId},'${poceImg}', '${poceName}')" class="card border-primary mb-3" style="max-width: 18rem;">
                       <p class="card-id">#${poceId}</p>
                     <div class="card-header">
@@ -12,8 +12,7 @@ function getPocemonCard( poceId,poceImg,poceName,typeName,typeName_2) {
                 </div>`;
 }
 
-
-function getPocemonCardDialog(poceId, poceImg, poceName) {
+function getPocemonCardDialog(poceId,poceImg,poceName) {
   return `<div class="card border-primary mb-3">
                       <p class="card-id">#${poceId}</p>
                     <div class="card-header">
