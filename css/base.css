@@ -46,13 +46,24 @@
 
 .card-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-.types-content {
+.types-content{
   display: flex;
   justify-content: space-around;
   flex-direction: row;
+}
+
+.link-content {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.mb-3 {
+    width: auto;
+    margin-bottom: 1rem !important;
 }
 
 .loader-overlay {

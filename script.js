@@ -2,7 +2,7 @@ let limit = 20;
 let offset = 0;
 let BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offsets=${offset}`;
 let pocedexCard = [];
-let allPokemons = [];
+let allPocemmons = [];
 let inputValue = document.getElementById("search");
 let dialogCard = document.getElementById("card-1");
 
@@ -27,15 +27,18 @@ async function pokemonCard() {
     for (let i = 0; i < pocedexCard.length; i++) {
       let response = await fetch(pocedexCard[i].url);
       let singledata = await response.json();
-      allPokemons.push(singledata);
+      allPocemmons.push(singledata);
       let poceId = singledata.id;
       let poceName = singledata.name;
+      poceName = poceName.charAt(0).toUpperCase() + poceName.slice(1);
       let poceImg = singledata.sprites.front_default;
       let types = singledata.types;
       let typeName = types[0].type.name;
+      typeName = poceName.charAt(0).toUpperCase() + typeName.slice(1);
       let typeName_1;
       types.length == 1 ? typeName : (typeName_1 = types[1].type.name);
       let typeName_2 = typeName_1 == undefined ? "" : typeName_1;
+       typeName_2 = typeName_2.charAt(0).toUpperCase() + typeName_2.slice(1);
       document.getElementById("pocemons").innerHTML += getPocemonCard(poceId,poceImg,poceName,typeName,typeName_2);
     }
   } finally {
@@ -53,34 +56,44 @@ async function searchPocemon(event) {
    poceImg = singledata.sprites.front_default;
    poceName = singledata.name;
    if (inputValue.value == singledata.id || inputValue.value == singledata.name) {
-     document.getElementById("card-1").innerHTML = getPocemonCardDialog(
-       poceId,
-       poceImg,
-       poceName
-     );
-     cardDialog(poceId, poceImg, poceName);
-   }
- }
- 
-}
-// todo normales nachladen???
+     document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId,poceImg,poceName);
+     
+     cardDialog(poceId, poceImg, poceName, height);
+   }}
+  }
+
 async function morePocemon() {
   offset = offset += 20;
   BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
-  window.scrollTo(
-    0,
-    document.body.scrollHeight || document.documentElement.scrollHeight
-  );
   await pokemonCard(BASE_URL);
 }
-// todo passende variablen reinrendern
-async function cardDialog(poceId, poceImg, poceName) {
-  document.getElementById("card-1").innerHTML = getPocemonCardDialog(
-    poceId,
-    poceImg,
-    poceName
-  );
-  dialogCard.showModal(poceId, poceImg, poceName);
+
+//Todo Card richtigen Elemente reinsetzen
+async function cardDialog(poceId, poceImg, poceName ) {
+  document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId,poceImg,poceName);
+  dialogCard.showModal(poceId, poceImg, poceName);  
+  await aboutCardPocemon(poceId);
+}
+// Todo Details About cardDialog
+async function aboutCardPocemon(poceId) {
+  for (let index = 0; index < allPocemmons.length; index++) {   
+   console.log(allPocemmons[poceId]);
+   //let speciesUrl = await fetch(allPocemmons[poceId].types[0].type.url);
+    //let speciesResult = await speciesUrl.json();
+   //console.log(speciesResult);
+    
+    poceId = allPocemmons[poceId].id -1;
+     let currentHeight = allPocemmons[poceId].height;
+     let currentWeight = allPocemmons[poceId].weight;
+     let currentAbilities = allPocemmons[poceId].abilities;
+     let currentAbilitiesName1 = currentAbilities[0].ability.name;
+      let currentAbilitiesName2 = currentAbilities[1].ability.name;
+      currentAbilitiesName1 = currentAbilitiesName1.charAt(0).toUpperCase() + currentAbilitiesName1.slice(1);
+      currentAbilitiesName2 = currentAbilitiesName1.charAt(0).toUpperCase() + currentAbilitiesName2.slice(1);
+     if (poceId) {
+        document.getElementById("card-body-content").innerHTML = getPocemonDetailsCardDialog(currentHeight, currentWeight, currentAbilitiesName1, currentAbilitiesName2);
+    }
+  }
 }
 
 function showLoader() {
@@ -88,6 +101,7 @@ function showLoader() {
   overlay?.removeAttribute("hidden");
   overlay?.setAttribute("aria-busy", "true");
   document.getElementById("pocemons")?.setAttribute("aria-hidden", "true");
+  document.body.style.overflow="hidden";
 }
 
 function hideLoader() {
@@ -96,5 +110,6 @@ function hideLoader() {
     overlay?.setAttribute("hidden", "");
     overlay?.setAttribute("aria-busy", "false");
     document.getElementById("pocemons")?.removeAttribute("aria-hidden");
+    document.body.style.overflow = "";
   }, 800);
 }
