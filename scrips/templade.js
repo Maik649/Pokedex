@@ -19,27 +19,35 @@ function getPocemonCardDialog(poceId, poceImg, poceName) {
                       <h5 class="card-title">${poceName}</h5>
                     <img id="cardImgHeder" src="${poceImg}" alt="${poceName}">
                     <p class="card-id">#${poceId}</p>
-                    </div>
-                    <div class="card-body text-primary">
-                      <div class="link-content">
+                   </div>
+                   <div class="link-content">
                         <a onclick="aboutCardPocemon()" href="#" class="card-link">About</a>
                         <a onclick="" href="#" class="card-link">Base Stats</a>
                         <a onclick="" href="#" class="card-link">Gender</a>
                         <a onclick="" href="#" class="card-link">Shiny</a>
                      </div>
+                    <div class="card-body text-primary">
                      <div id="card-body-content" class="card-body-content"></div>
                      <div class="card-footer">
-                     <button><</button> <button>></button>
-                     </div>
+                     <button class="card-footer-btn"><</button> <button class="card-footer-btn">></button>
                     </div>
                 </div>`;
 }
 
-function getPocemonDetailsCardDialog(currentHeight, currentWeight, currentAbilitiesName1, currentAbilitiesName2) {
-  return `<div class="card border-primary mb-1">
-                      <p class="">Height: ${currentHeight}</p>
-                      <p class="">Weight: ${currentWeight}</p>
-                      <p class="">Abilities: ${currentAbilitiesName1} , ${currentAbilitiesName2}</p>
-                     
-                </div>`;
+function getPocemonDetailsCardDialog(currentSpecie, currentHeight, currentWeight, currentAbilitiesName1, currentAbilitiesName2) {
+  return `<div class="card-about-content ">
+  <div class="card-details-container">
+    <p class="detail-p-headlin">Species:</p><p>${currentSpecie}</p>
+  </div>
+ <div class="card-details-container">
+    <p class="detail-p-headlin">Height:</p><p>${currentHeight}</p>
+  </div>
+  <div class="card-details-container">
+    <p class="detail-p-headlin">Weight:</p><p>${currentWeight}</p>
+  </div>
+  <div class="card-details-container">
+  <p class="detail-p-headlin">Abilities:</p>
+      <p>${currentAbilitiesName1} , ${currentAbilitiesName2}</p>
+  </div>
+</div>`;
 }
