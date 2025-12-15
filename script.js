@@ -26,17 +26,16 @@ async function pokemonCard() {
     await loadPocedex(pocedexCard);
     for (let i = 0; i < pocedexCard.length; i++) {
       let response = await fetch(pocedexCard[i].url);
-      let singledata = await response.json();
+      let singledata = await response.json(); 
       allPocemmons.push(singledata);
-      let poceId = singledata.id;
+      let poceId = singledata.id; 
       let poceName = singledata.name;
       poceName = poceName.charAt(0).toUpperCase() + poceName.slice(1);
       let poceImg = singledata.sprites.front_default;
-      let types = singledata.types;
+      let types = singledata.types; 
       let typeName = types[0].type.name;
       typeName = poceName.charAt(0).toUpperCase() + typeName.slice(1);
-      let typeName_1;
-      types.length == 1 ? typeName : (typeName_1 = types[1].type.name);
+      let typeName_1; types.length == 1 ? typeName : (typeName_1 = types[1].type.name);
       let typeName_2 = typeName_1 == undefined ? "" : typeName_1;
        typeName_2 = typeName_2.charAt(0).toUpperCase() + typeName_2.slice(1);
       document.getElementById("pocemons").innerHTML += getPocemonCard(poceId,poceImg,poceName,typeName,typeName_2);
@@ -57,9 +56,9 @@ async function searchPocemon(event) {
    poceName = singledata.name;
    if (inputValue.value == singledata.id || inputValue.value == singledata.name) {
      document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId,poceImg,poceName);
-     
      cardDialog(poceId, poceImg, poceName, height);
-   }}
+      }
+    }
   }
 
 async function morePocemon() {
@@ -68,30 +67,28 @@ async function morePocemon() {
   await pokemonCard(BASE_URL);
 }
 
-//Todo Card richtigen Elemente reinsetzen
 async function cardDialog(poceId, poceImg, poceName ) {
   document.getElementById("card-1").innerHTML = getPocemonCardDialog(poceId,poceImg,poceName);
   dialogCard.showModal(poceId, poceImg, poceName);  
   await aboutCardPocemon(poceId);
 }
-// Todo Details About cardDialog
+
 async function aboutCardPocemon(poceId) {
   for (let index = 0; index < allPocemmons.length; index++) {   
-   console.log(allPocemmons[poceId]);
-   //let speciesUrl = await fetch(allPocemmons[poceId].types[0].type.url);
-    //let speciesResult = await speciesUrl.json();
-   //console.log(speciesResult);
-    
+   let speciesUrl = await fetch(`https://pokeapi.co/api/v2/nature/${poceId}/`);
+    let speciesResult = await speciesUrl.json(); 
     poceId = allPocemmons[poceId].id -1;
+    let currentSpecie = speciesResult.pokeathlon_stat_changes[0].pokeathlon_stat.name
+    currentSpecie = currentSpecie.charAt(0).toUpperCase() + currentSpecie.slice(1);
      let currentHeight = allPocemmons[poceId].height;
      let currentWeight = allPocemmons[poceId].weight;
      let currentAbilities = allPocemmons[poceId].abilities;
      let currentAbilitiesName1 = currentAbilities[0].ability.name;
-      let currentAbilitiesName2 = currentAbilities[1].ability.name;
+     let currentAbilitiesName2 = currentAbilities[1].ability.name;
       currentAbilitiesName1 = currentAbilitiesName1.charAt(0).toUpperCase() + currentAbilitiesName1.slice(1);
       currentAbilitiesName2 = currentAbilitiesName1.charAt(0).toUpperCase() + currentAbilitiesName2.slice(1);
      if (poceId) {
-        document.getElementById("card-body-content").innerHTML = getPocemonDetailsCardDialog(currentHeight, currentWeight, currentAbilitiesName1, currentAbilitiesName2);
+        document.getElementById("card-body-content").innerHTML = getPocemonDetailsCardDialog(currentSpecie,currentHeight, currentWeight, currentAbilitiesName1, currentAbilitiesName2);
     }
   }
 }
