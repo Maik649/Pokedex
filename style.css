@@ -1,5 +1,7 @@
 @import url("./css/varieablen.css");
 @import url("./css/base.css");
+@import url("./css/card.css");
+
 
 body {
   margin: 0;
@@ -33,6 +35,29 @@ main {
 
 .container{
    min-height: calc(100% + 170px) !important;
+}
+
+.dialog {
+  border: none !important;
+  border-radius: 8px;
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 1);
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.loader-overlay[aria-busy="true"] {
+  visibility: visible;
+  opacity: 1;
 }
 
 footer {

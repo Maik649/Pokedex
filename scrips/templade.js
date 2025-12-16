@@ -29,7 +29,7 @@ function getPocemonCardDialog(poceId, poceImg, poceName) {
                     <div class="card-body text-primary">
                      <div id="card-body-content" class="card-body-content"></div>
                      <div class="card-footer">
-                     <button class="card-footer-btn"><</button> <button class="card-footer-btn">></button>
+                     <button onclick="showLeft(${poceId}, '${poceImg}', '${poceName}')" class="card-footer-btn"><</button> <button onclick="showlRight(${poceId}, '${poceImg}', '${poceName}')" class="card-footer-btn">></button>
                     </div>
                 </div>`;
 }
