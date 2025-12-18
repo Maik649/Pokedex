@@ -51,12 +51,9 @@ async function cardDialog(i) {
   dialogCard.showModal();
 }
 
-
-
 // async function aboutCardPocemon() {
 //       document.getElementById("card-body-content").innerHTML = getPocemonDetailsCardDialog();
 //     }
-
 // async function searchPocemon(event) {
 //   event.stopPropagation();
 // }
@@ -68,18 +65,16 @@ async function morePocemon() {
   await pokemonData();
 }
 
-  
-
 async function showLeft(currentIndex) {
   currentIndex = (currentIndex - 1 + allPokemmons.length) % allPokemmons.length;
-  let pokedexsolo = allPokemmons[currentIndex];
-
-  document.querySelector("#card-1").innerHTML = getPocemonCardDialog(pokedexsolo);
+  currentIndex = allPokemmons[currentIndex];
+  currentIndex--;
+  document.querySelector("#card-1").innerHTML = getPocemonCardDialog(currentIndex)
+ await cardDialog();
 }
 
 function showlRight(currentIndex) {
   currentIndex = (currentIndex + 1 + allPokemmons.length) % allPokemmons.length;
-  pokedexsolo = allPokemmons[currentIndex];
-
-  document.querySelector("#card-1").innerHTML = getPocemonCardDialog(pokedexsolo);
+allPokemmons[currentIndex];
+  document.querySelector("#card-1").innerHTML = getPocemonCardDialog();
 }
