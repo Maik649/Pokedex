@@ -1,6 +1,11 @@
 .card {
   margin: 1rem;
   width: 280px;
+  
+}
+h5 h6{
+ color: var(--bs-gray-dark);
+
 }
 
 .card:hover {
@@ -9,14 +14,14 @@
 
 .card-id {
   padding: 15px;
-  background-color: var(--bs-card-cap-bg);
   margin-bottom: 0;
-  color: var(--bs-primary);
+  color: var(--bs-gray-dark);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
+  border: none !important;
 }
 
 .types-content {
@@ -43,6 +48,11 @@
   flex-direction: row;
 }
 
+.types-text{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
 .detail-p-headlin {
   width: 100px;
 }

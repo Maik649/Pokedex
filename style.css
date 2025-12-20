@@ -34,7 +34,7 @@ main {
 }
 
 .container{
-   min-height: calc(100% + 170px) !important;
+   min-height: calc(100vh - 170px)!important;
 }
 
 .dialog {
