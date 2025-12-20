@@ -19,12 +19,11 @@
     <body onload="init()">
         <header>
             <div class="header-logo-container">
-                <img src="./image/pokemon-ball.png" alt="">
+                <img src="./image/pokemon-ball.png" alt="pokemon-ball.png">
             </div>
             <div class="search-container">
-                <input placeholder="Name oder Id" id="search" class="search-input" type="text" name="search"
-                    id="search-id">
-                <button class="primary-btn" onclick="searchPocemon(event)" id="btn-search" type="button">Suchen</button>
+                <input placeholder="Name oder Id" id="search" class="search-input" type="text" name="search">
+                <button onclick="searchPocemon()" class="primary-btn"  id="btn-search" type="button">Suchen</button>
             </div>
         </header>
         <main id="content" class="container">
@@ -34,7 +33,9 @@
                 </div>
             </div>
             <div id="pocemons" class="container-xxl"></div>
-            <dialog class="dialog" closedby="any" id="card-1"></dialog>
+            <dialog class="dialog" closedby="any" id="dialog-content">
+                <section id="card"></section>
+            </dialog>
             <div class="mor-btn-container">
                 <button class="primary-btn" onclick="morePocemon(offset)">Mehr Anzeigen</button>
             </div>
