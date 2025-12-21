@@ -29,6 +29,8 @@ async function pokomeonData() {
       let singledata = await response.json();
       allPokemmons.push(singledata);
     }
+  } catch (error) {
+    console.log("Es ist ein Fehler Aufgetreten", error);
   } finally {
     hideLoader();
   }
@@ -38,14 +40,16 @@ async function pokemonCard() {
   await pokomeonData(allPokemmons);
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
+  //console.log(pokemon.sprites);
+  
     try {
       let speciesUrl = await fetch(pokemon.species.url);
-      let specie = await speciesUrl.json();
+      let specie = await speciesUrl.json(); 
       let color = specie.color.name;
-    document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon,i,color);
+      document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon,i,color);
     } catch (error) {
-      console.log('Es ist ein Fehler aufgetreten', error);
-    }
+      console.log("Es ist ein Fehler aufgetreten", error);
+    } 
   }
 }
 
@@ -59,6 +63,18 @@ async function cardDialog(i) {
 async function aboutCardPocemon(i) {
   let pokemon = allPokemmons[i]; 
     document.getElementById("card-body-content").innerHTML = getAboutCardDialog(pokemon, pokemon);
+}
+
+async function baseStatCardPocemon(i) {
+  let pokemon = allPokemmons[i];
+  document.getElementById("card-body-content").innerHTML = getBaseStatCardDialog(pokemon, i);
+}
+
+async function shinyCardPocemon(i) {
+  let pokemon = allPokemmons[i];
+  console.log(pokemon);
+  
+  document.getElementById("card-body-content").innerHTML = getShinyCardDialog(pokemon, i);
 }
 
 async function searchPocemon() {
@@ -76,6 +92,8 @@ async function showLeft(i) {
   let currentIndex = (i - 1 + allPokemmons.length) % allPokemmons.length;
   let pokemon = allPokemmons[currentIndex];
   document.querySelector("#card").innerHTML = getPokemonCardDialog(pokemon,currentIndex);
+  await aboutCardPocemon(i);
+
 }
 
 async function showlRight(i) {
@@ -83,6 +101,7 @@ async function showlRight(i) {
   currentIndex = (i + 1) % allPokemmons.length;
   let pokemon = allPokemmons[currentIndex];
   document.querySelector("#card").innerHTML = getPokemonCardDialog(pokemon,currentIndex);
+  await aboutCardPocemon(i);
 }
 
 async function morePocemon() {
