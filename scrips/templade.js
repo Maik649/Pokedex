@@ -1,19 +1,19 @@
 function getPokemonCard(pokemon, i, color) {
-  return `<article onclick="cardDialog(${i})" class="card card-hover mb-3" style="width: 18rem; background:linear-gradient(in oklab, blue, ${color});">
+  return `<article onclick="cardDialog(${i})" class="card card-hover mb-3 ${pokemon.types[0].type.name}" style="width: 18rem;">
   <div class="card-header">
     <h5 class="card-title">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h5>
     <img id="cardImgHeder" src="${pokemon.sprites.front_default}" alt="${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}">
     <span class="card-id">#${pokemon.id}</span>
   </div>
   <div class="">
-    <span class="types-text" style="background:${color}">${
+    <span class="types-text">${
     pokemon.types[i] != undefined? pokemon.types[i].type.name.charAt(0).toUpperCase() +pokemon.types[i].type.name.slice(1): pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1)
   }</span>
   </article>`;
 }
 
 function getPokemonCardDialog(pokemon, currentIndex) {
-  return `<article class="card mb-3">
+  return `<article class="card mb-3 ${pokemon.types[0].type.name}">
             <div class="card-header">
               <h5 class="card-title">${pokemon.name}</h5>
               <img id="cardImgHeder" src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}" style="width:140px; height:140px">
@@ -61,22 +61,22 @@ function getBaseStatCardDialog(pokemon) {
   </ul>
   <div class="progress-content">
     <div class="progress" role="progressbar" aria-label="${pokemon.stats[0].stat.name}" aria-valuenow="${pokemon.stats[0].base_stat}" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped" style="width: ${pokemon.stats[0].base_stat}%"></div>
+        <div class="progress-bar progress-bar-striped" style="width: ${pokemon.stats[0].base_stat}%">${pokemon.stats[0].base_stat}%</div>
     </div>
     <div class="progress" role="progressbar" aria-label="${pokemon.stats[1].stat.name}" aria-valuenow="${pokemon.stats[1].base_stat}" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped bg-success" style="width: ${pokemon.stats[1].base_stat}%"></div>
+        <div class="progress-bar progress-bar-striped bg-success" style="width: ${pokemon.stats[1].base_stat}%">${pokemon.stats[1].base_stat}%</div>
     </div>
     <div class="progress" role="progressbar" aria-label="${pokemon.stats[2].stat.name}" aria-valuenow="${pokemon.stats[2].base_stat}" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped bg-info" style="width:${pokemon.stats[2].base_stat}%"></div>
+        <div class="progress-bar progress-bar-striped bg-info" style="width:${pokemon.stats[2].base_stat}%">${pokemon.stats[2].base_stat}%</div>
     </div>
     <div class="progress" role="progressbar" aria-label="${pokemon.stats[3].stat.name}" aria-valuenow="${pokemon.stats[3].base_stat}" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped bg-warning" style="width: ${pokemon.stats[3].base_stat}%"></div>
+        <div class="progress-bar progress-bar-striped bg-warning" style="width: ${pokemon.stats[3].base_stat}%">${pokemon.stats[3].base_stat}%</div>
     </div>
     <div class="progress" role="progressbar" aria-label="${pokemon.stats[4].stat.name}" aria-valuenow="${pokemon.stats[4].base_stat}" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped bg-danger" style="width: ${pokemon.stats[4].base_stat}%"></div>
+        <div class="progress-bar progress-bar-striped bg-danger" style="width: ${pokemon.stats[4].base_stat}%">${pokemon.stats[4].base_stat}%</div>
     </div>
     <div class="progress" role="progressbar" aria-label="${pokemon.stats[5].stat.name}" aria-valuenow="${pokemon.stats[5].base_stat}" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-bar progress-bar-striped bg-danger" style="width: ${pokemon.stats[5].base_stat}%"></div>
+        <div class="progress-bar progress-bar-striped bg-danger" style="width: ${pokemon.stats[5].base_stat}%">${pokemon.stats[5].base_stat}%</div>
     </div>
   </div>
 </div>`;
