@@ -37,48 +37,52 @@ async function pokomeonData() {
 async function pokemonCard() {
   await pokomeonData(allPokemmons);
   for (let i = 0; i < allPokemmons.length; i++) {
-    let element = allPokemmons[i];
-    let speciesUrl = await fetch(element.species.url);
-    let specie = await speciesUrl.json();
-    let color = specie.color.name;
-    document.getElementById("pocemons").innerHTML += getPokemonCard(element,i,color);
+    let pokemon = allPokemmons[i];
+    try {
+      let speciesUrl = await fetch(pokemon.species.url);
+      let specie = await speciesUrl.json();
+      let color = specie.color.name;
+    document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon,i,color);
+    } catch (error) {
+      console.log('Es ist ein Fehler aufgetreten', error);
+    }
   }
 }
 
 async function cardDialog(i) {
-  let element = allPokemmons[i];
-  document.querySelector("#card").innerHTML = getPokemonCardDialog(element, i, element);
+  let pokemon = allPokemmons[i];
+  document.querySelector("#card").innerHTML = getPokemonCardDialog(pokemon, i, pokemon);
   await aboutCardPocemon(i);
   dialogCard.showModal();
 }
 
 async function aboutCardPocemon(i) {
-  let element = allPokemmons[i]; 
-    document.getElementById("card-body-content").innerHTML = getAboutCardDialog(element, element);
+  let pokemon = allPokemmons[i]; 
+    document.getElementById("card-body-content").innerHTML = getAboutCardDialog(pokemon, pokemon);
 }
 
 async function searchPocemon() {
   for (let i = 0; i < allPokemmons.length; i++) {
-    let element = allPokemmons[i];
-   if (inputValue.value == element.id || inputValue.value == element.name) {
-     document.getElementById("card").innerHTML = getPokemonCardDialog(element,i);
-     await cardDialog(i);
-     await aboutCardPocemon(i);
-   }
+    let pokemon = allPokemmons[i];
+      if (inputValue.value == pokemon.id || inputValue.value == pokemon.name) {
+        document.getElementById("card").innerHTML = getPokemonCardDialog(pokemon,i);
+        await cardDialog(i);
+        await aboutCardPocemon(i);
+    }
   }
 }
 
 async function showLeft(i) {
   let currentIndex = (i - 1 + allPokemmons.length) % allPokemmons.length;
-  let element = allPokemmons[currentIndex];
-  document.querySelector("#card").innerHTML = getPokemonCardDialog(element,currentIndex);
+  let pokemon = allPokemmons[currentIndex];
+  document.querySelector("#card").innerHTML = getPokemonCardDialog(pokemon,currentIndex);
 }
 
 async function showlRight(i) {
   let currentIndex = i;
   currentIndex = (i + 1) % allPokemmons.length;
-  let element = allPokemmons[currentIndex];
-  document.querySelector("#card").innerHTML = getPokemonCardDialog(element,currentIndex);
+  let pokemon = allPokemmons[currentIndex];
+  document.querySelector("#card").innerHTML = getPokemonCardDialog(pokemon,currentIndex);
 }
 
 async function morePocemon() {
