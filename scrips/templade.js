@@ -14,7 +14,7 @@ function getPokemonCardDialog(element, currentIndex) {
   return `<article class="card border-primary mb-3">
             <div class="card-header">
               <h5 class="card-title">${element.name}</h5>
-              <img id="cardImgHeder" src="${element.sprites.front_default}" alt="${element.name.charAt(0).toUpperCase() + element.name.slice(1)}">
+              <img id="cardImgHeder" src="${element.sprites.front_default}" alt="${element.name.charAt(0).toUpperCase() + element.name.slice(1)}" style="width:140px; height:140px">
               <p class="card-id">#${element.id}</p>
             </div>
             <div class="link-content">
@@ -30,10 +30,10 @@ function getPokemonCardDialog(element, currentIndex) {
                 </div>
 </article>`;}
 
-function getAboutCardDialog(specie, specieale) {
+function getAboutCardDialog(specie, element) {
   return `<div class="card-about-content ">
   <div class="card-details-container">
-    <p class="detail-p-headlin">Species</p><p>${specieale.charAt(0).toUpperCase() + specieale.slice(1)}</p>
+    <p class="detail-p-headlin">Species</p><p>${element.stats[5].stat.name.charAt(0).toUpperCase() + element.stats[5].stat.name.slice(1)}</p>
   </div>
  <div class="card-details-container">
     <p class="detail-p-headlin">Height</p><p>${specie.height / 10} cm</p>
@@ -43,7 +43,7 @@ function getAboutCardDialog(specie, specieale) {
   </div>
   <div class="card-details-container">
   <p class="detail-p-headlin">Abilities</p>
-      <p>${specie.abilities[0].ability.name.charAt(0).toUpperCase() + specie.abilities[1].ability.name.slice(1)} , ${specie.abilities[1].ability.name.charAt(0).toUpperCase() + specie.abilities[1].ability.name.slice(1)}</p>
+      <p>${specie.abilities[0].ability.name.charAt(0).toUpperCase() + specie.abilities[0].ability.name.slice(1)} , ${specie.abilities[1] == undefined? "": specie.abilities[1].ability.name.charAt(0).toUpperCase() +specie.abilities[1].ability.name.slice(1)}</p>
   </div>
   
 </div>`;
