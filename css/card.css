@@ -1,3 +1,4 @@
+
 .card-section {
   height: 0;
 }
@@ -8,17 +9,21 @@
 }
 
 h5 h6 {
-  color: var(--bs-gray-dark);
+  color: black;
 }
 
 .card-hover:hover {
-  border: 3px solid grey;
+  scale: 1.02;
+   box-shadow: 0 0 20px 2px #7c7c7c,
+              0 0 15px 4px #ebecca,
+              0 0 15px 8px #455ca7,
+              0 0 15px 8px #bb8fa6;
 }
 
 .card-id {
   padding: 15px;
   margin-bottom: 0;
-  color: var(--bs-gray-dark);
+  color: black;
 }
 
 .card-header {
@@ -43,7 +48,7 @@ h5 h6 {
 }
 
 .link-content a {
-  color: gray;
+  color: black;
 }
 
 .mb-3 {
@@ -52,7 +57,7 @@ h5 h6 {
 }
 
 .card-body-content {
-  color: gray !important;
+  color: black !important;
   padding: 16px;
   height: 280px;
 }
