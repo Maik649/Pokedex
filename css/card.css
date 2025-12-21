@@ -1,15 +1,18 @@
+.card-section {
+  height: 0;
+}
+
 .card {
   margin: 1rem;
   width: 280px;
-  
-}
-h5 h6{
- color: var(--bs-gray-dark);
-
 }
 
-.card:hover {
-  scale: 1.01;
+h5 h6 {
+  color: var(--bs-gray-dark);
+}
+
+.card-hover:hover {
+  border: 3px solid grey;
 }
 
 .card-id {
@@ -34,12 +37,34 @@ h5 h6{
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  padding: 16px;
+  padding: 8px;
+  border-bottom: 1px slategrey solid;
+  border-top: 1px slategrey solid;
+}
+
+.link-content a {
+  color: gray;
 }
 
 .mb-3 {
   width: auto;
   margin-bottom: 1rem !important;
+}
+
+.card-body-content {
+  color: gray !important;
+  padding: 16px;
+  height: 280px;
+}
+
+.card-body {
+  padding-top: 0 !important;
+}
+
+.progress {
+  width: 100% !important;
+  height: 16px !important;
+  margin: 15px 0;
 }
 
 .card-details-container {
@@ -48,20 +73,43 @@ h5 h6{
   flex-direction: row;
 }
 
-.types-text{
+.types-text {
   display: block;
   width: 100%;
   text-align: center;
 }
+
 .detail-p-headlin {
   width: 100px;
 }
+
+ul {
+  list-style: none;
+  padding: 0 !important;
+}
+
+.progress-content {
+  width: 46%;
+}
+
+.base-data {
+  width: 160px;
+  padding: 5px;
+}
+
+.card-stats-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .card-footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 0 !important;
   background-color: lightgrey !important;
+  border-bottom: 1px slategrey solid !important;
 }
 
 .card-footer-btn {
