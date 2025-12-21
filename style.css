@@ -8,6 +8,10 @@ body {
   padding: 0;
 }
 
+body:has(.dialog[open]) {
+  overflow: hidden;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -40,6 +44,12 @@ main {
 .dialog {
   border: none !important;
   border-radius: 8px;
+  width: 420px;
+  height: 590px;
+}
+
+dialog::backdrop{
+  background-color: rgba(211, 211, 211, 0.527);
 }
 
 .loader-overlay {
@@ -48,7 +58,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.863);
+  background: rgba(255, 255, 255, 0.952);
   z-index: 2000;
   visibility: hidden;
   opacity: 0;
