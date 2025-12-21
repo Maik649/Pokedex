@@ -41,15 +41,7 @@ async function pokemonCard() {
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
   //console.log(pokemon.sprites);
-  
-    try {
-      let speciesUrl = await fetch(pokemon.species.url);
-      let specie = await speciesUrl.json(); 
-      let color = specie.color.name;
-      document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon,i,color);
-    } catch (error) {
-      console.log("Es ist ein Fehler aufgetreten", error);
-    } 
+      document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon,i);
   }
 }
 

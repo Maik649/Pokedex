@@ -1,4 +1,4 @@
-function getPokemonCard(pokemon, i, color) {
+function getPokemonCard(pokemon, i) {
   return `<article onclick="cardDialog(${i})" class="card card-hover mb-3 ${pokemon.types[0].type.name}" style="width: 18rem;">
   <div class="card-header">
     <h5 class="card-title">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h5>
