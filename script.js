@@ -16,7 +16,7 @@ async function loadPocedex() {
     let poceCard = await response.json();
     pocedexCard = poceCard.results;
   } catch (error) {
-    console.error(`Es ist ein Fehler Aufgetreten`);
+    console.error(`Es ist ein Fehler Aufgetreten`, error);
   }
 }
 
@@ -41,32 +41,23 @@ async function pokemonCard() {
     let speciesUrl = await fetch(element.species.url);
     let specie = await speciesUrl.json();
     let color = specie.color.name;
-    document.getElementById("pocemons").innerHTML += getPokemonCard(
-      element,
-      i,
-      color
-    );
+    document.getElementById("pocemons").innerHTML += getPokemonCard(element,i,color);
   }
 }
 
 async function cardDialog(i) {
   let element = allPokemmons[i];
-  document.querySelector("#card").innerHTML = getPokemonCardDialog(element, i);
+  document.querySelector("#card").innerHTML = getPokemonCardDialog(element, i, element);
   await aboutCardPocemon(i);
   dialogCard.showModal();
 }
 
 async function aboutCardPocemon(i) {
-  let element = allPokemmons[i];
-  let id = allPokemmons[i].id;
-  let typeUrl = await fetch(`https://pokeapi.co/api/v2/nature/${id}/`);
-  let type = await typeUrl.json();
-  let specieale = type.pokeathlon_stat_changes[0].pokeathlon_stat.name;
-  document.getElementById("card-body-content").innerHTML = getAboutCardDialog(element,specieale,i);
+  let element = allPokemmons[i]; 
+    document.getElementById("card-body-content").innerHTML = getAboutCardDialog(element, element);
 }
 
 async function searchPocemon() {
- 
   for (let i = 0; i < allPokemmons.length; i++) {
     let element = allPokemmons[i];
    if (inputValue.value == element.id || inputValue.value == element.name) {
@@ -76,6 +67,7 @@ async function searchPocemon() {
    }
   }
 }
+
 async function showLeft(i) {
   let currentIndex = (i - 1 + allPokemmons.length) % allPokemmons.length;
   let element = allPokemmons[currentIndex];
