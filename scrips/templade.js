@@ -6,15 +6,15 @@ function getPokemonCard(pokemon, i) {
     <span class="card-id">#${pokemon.id}</span>
   </div>
   <div class="card-footer">
-    <span class="types-text">${pokemon.types[0].type.name.charAt(0).toUpperCase() + pokemon.types[0].type.name.slice(1)}</span>
-    <span class="types-text">${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name.charAt(0).toUpperCase() + pokemon.types[1].type.name.slice(1)}</span>
+    <span class="types-text ${pokemon.types[0].type.name}">${pokemon.types[0].type.name.charAt(0).toUpperCase() + pokemon.types[0].type.name.slice(1)}</span>
+    <span class="types-text ${pokemon.types[0].type.name}">${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name.charAt(0).toUpperCase() + pokemon.types[1].type.name.slice(1)}</span>
   </article>`;
 }
 
 function getPokemonCardDialog(pokemon, currentIndex) {
   return `<article class="card mb-3 ${pokemon.types[0].type.name}">
             <div class="card-header">
-              <h5 class="card-title">${pokemon.name}</h5>
+              <h5 class="card-title">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h5>
               <img id="cardImgHeder" src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}" style="width:140px; height:140px">
               <p class="card-id">#${pokemon.id}</p>
             </div>
@@ -22,6 +22,7 @@ function getPokemonCardDialog(pokemon, currentIndex) {
               <a onclick="aboutCardPocemon(${currentIndex})" href="#" class="card-link">About</a>
               <a onclick="baseStatCardPocemon(${currentIndex})" href="#" class="card-link">Base Stats</a>
               <a onclick="shinyCardPocemon(${currentIndex})" href="#" class="card-link">Shiny</a>
+              <a onclick="genderCardPocemon(${currentIndex})" href="#" class="card-link">Evolution</a>
             </nav>
               <div id="card-body-content" class="card-body-content"></div>
             <div class="card-footer">
@@ -91,8 +92,8 @@ function getShinyCardDialog(pokemon,pokemon2) {
   </div>`;
 }
 
-// function getGenderCardDialog(pokemon, pokemon3) {
-//   return `<div class="card-shiny-content">
-//     <b><span>${pokemon.name}</span>><span>${pokemon3.chain.evolves_to[0].species.name}</span>><span>${pokemon3.chain.evolves_to[0].evolves_to[0].species.name}</span></b>
-//   </div>`;
-// }
+function getGenderCardDialog(pokemon, pokemon3) {
+  return `<div class="card-shiny-content">
+    <b><span>${pokemon.name}</span>><span>${pokemon3.chain.evolves_to[0].species.name}</span>><span>${pokemon3.chain.evolves_to[0].evolves_to[0].species.name}</span></b>
+  </div>`;
+}
