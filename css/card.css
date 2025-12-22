@@ -13,7 +13,8 @@ h5 h6 {
 
 .card-hover:hover {
   scale: 1.02;
-  box-shadow: 0 0 20px 2px #7c7c7c, 0 0 15px 4px #ebecca, 0 0 15px 8px #455ca7, 0 0 15px 8px #bb8fa6;
+  box-shadow: 0 0 20px 2px #7c7c7c, 0 0 15px 4px #ebecca, 0 0 15px 8px #455ca7,
+    0 0 15px 8px #bb8fa6;
   transition: ease-in-out 100ms;
 }
 
@@ -77,8 +78,15 @@ h5 h6 {
 
 .types-text {
   display: block;
-  width: 100%;
+  width: 85px;
   text-align: center;
+  border: 2px solid #ebecca;
+  border-radius: 16px;
+  margin: 8px;
+}
+
+.types-text:hover {
+  cursor: pointer;
 }
 
 .detail-p-headlin {
