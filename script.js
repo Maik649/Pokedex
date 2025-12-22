@@ -40,8 +40,14 @@ async function pokemonCard() {
   await pokomeonData(allPokemmons);
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
-  //console.log(pokemon.sprites);
-      document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon,i);
+    if (pokemon.types.length == 1) {
+      pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1);
+    } else {
+      pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1);
+      pokemon.types[1].type.name.charAt(0).toUpperCase() +pokemon.types[1].type.name.slice(1);
+    }
+    console.log(pokemon);
+    document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon, i);
   }
 }
 
@@ -64,10 +70,19 @@ async function baseStatCardPocemon(i) {
 
 async function shinyCardPocemon(i) {
   let pokemon = allPokemmons[i];
-  console.log(pokemon);
-  
-  document.getElementById("card-body-content").innerHTML = getShinyCardDialog(pokemon, i);
+    let speciURL = await fetch(pokemon.species.url);
+    let pokemon2 = await speciURL.json();
+    document.getElementById("card-body-content").innerHTML = getShinyCardDialog(pokemon, pokemon2);
 }
+
+// async function genderCardPocemon(i) {
+//   let pokemon = allPokemmons[i];
+//   let evolutionURL = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${pokemon.id}/`);
+//   let pokemon3 = await evolutionURL.json();
+//  console.log(pokemon3.chain.evolves_to[0].evolves_to[0].species.name);
+ 
+//   document.getElementById("card-body-content").innerHTML = getGenderCardDialog(pokemon, pokemon3)
+// }
 
 async function searchPocemon() {
   for (let i = 0; i < allPokemmons.length; i++) {
