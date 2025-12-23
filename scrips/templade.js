@@ -1,13 +1,14 @@
-function getPokemonCard(pokemon, i) {
+
+function getPokemonCard(pokemon, i, button2) {
   return `<article onclick="cardDialog(${i})" class="card card-hover mb-3 ${pokemon.types[0].type.name}" style="width: 18rem;">
   <div class="card-header">
     <h5 class="card-title">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h5>
     <img id="cardImgHeder" src="${pokemon.sprites.front_default}" alt="${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}">
     <span class="card-id">#${pokemon.id}</span>
-  </div>
-  <div id="icon-content" class="card-footer">
-  <button class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>
-  <button  class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>
+      </div>
+  <div id="button-content" class="card-footer">
+  <button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>
+  ${pokemon.types.length == 1 ? "":button2}
     </article>`;
 }
 
