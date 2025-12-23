@@ -5,10 +5,10 @@ function getPokemonCard(pokemon, i) {
     <img id="cardImgHeder" src="${pokemon.sprites.front_default}" alt="${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}">
     <span class="card-id">#${pokemon.id}</span>
   </div>
-  <div class="card-footer">
-    <span class="types-text ${pokemon.types[0].type.name}">${pokemon.types[0].type.name.charAt(0).toUpperCase() + pokemon.types[0].type.name.slice(1)}</span>
-    <span class="types-text ${pokemon.types[0].type.name}">${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name.charAt(0).toUpperCase() + pokemon.types[1].type.name.slice(1)}</span>
-  </article>`;
+  <div id="icon-content" class="card-footer">
+  <button class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>
+  <button  class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>
+    </article>`;
 }
 
 function getPokemonCardDialog(pokemon, currentIndex) {

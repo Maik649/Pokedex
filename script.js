@@ -6,6 +6,7 @@ let allPokemmons = [];
 let inputValue = document.getElementById("search");
 let dialogCard = document.getElementById("dialog-content");
 
+
 async function init() {
   await pokemonCard();
 }
@@ -40,11 +41,13 @@ async function pokemonCard() {
   await pokomeonData(allPokemmons);
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
-
-    //console.log(pokemon.species.url);
-    
-    if (pokemon.types.length == 1) {
-      pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1);
+   //let node = document.getElementById("icon-content");
+   //node.querySelectorAll("type-btn").classList.add("icon-content-remove");
+   if (pokemon.types.length == 1) {
+        pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1);
+        // if (node.parentNode) {
+        //       node.parentNode.removeChild(node);
+        // }
     } else {
       pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1);
       pokemon.types[1].type.name.charAt(0).toUpperCase() +pokemon.types[1].type.name.slice(1);
