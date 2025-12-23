@@ -7,7 +7,7 @@ function getPokemonCard(pokemon, i, button2) {
     <span class="card-id">#${pokemon.id}</span>
       </div>
   <div id="button-content" class="card-footer">
-  <button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>
+  <button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>
   ${pokemon.types.length == 1 ? "":button2}
     </article>`;
 }

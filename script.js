@@ -40,7 +40,7 @@ async function pokemonCard() {
   await pokomeonData(allPokemmons);
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
-    let button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`
+    let button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`
     if (pokemon.types.length == 1) {
       pokemon.types[0].type.name.charAt(0).toUpperCase() + pokemon.types[0].type.name.slice(1);
     } else {
