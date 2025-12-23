@@ -89,6 +89,25 @@ h5 h6 {
   cursor: pointer;
 }
 
+.type-img {
+  width: 48px;
+  border-radius: 50%;
+}
+
+.type-btn {
+  border-radius: 50%;
+  border: none;
+  width: 52px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-content-remove{
+  display: none;
+}
+
 .detail-p-headlin {
   width: 100px;
 }
