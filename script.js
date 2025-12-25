@@ -92,16 +92,15 @@ async function genderCardPocemon(i) {
   }
 }
 
-async function searchPocemon() {
+async function inputSearchPocemon() {
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
     if (inputValue.value.trim() == "") {
-       inputValue.value = "Bitte etwas Eintrag";
+      document.getElementById("pocemons").innerHTML = getNotPokemon(pokemon, i)
+
     } else {
       if (inputValue.value == pokemon.id || inputValue.value == pokemon.name) {
-        document.getElementById("card").innerHTML = getPokemonCardDialog(pokemon,i);
-        await cardDialog(i);
-        await aboutCardPocemon(i);
+        document.getElementById("pocemons").innerHTML = getPokemonCard(pokemon,i);
       }
     }
   }
@@ -127,4 +126,4 @@ async function morePocemon() {
   offset = offset += 20;
   BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
   await pokemonCard();
-}
+};

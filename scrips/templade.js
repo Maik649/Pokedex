@@ -8,9 +8,14 @@ function getPokemonCard(pokemon, i, button2) {
       </div>
   <div id="button-content" class="card-footer">
   <button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>
-  ${pokemon.types.length == 1 ? "":button2}
+                  ${pokemon.types.length == 1 ? "":button2}
     </article>`;
 }
+
+function getNotPokemon(pokemon, i){
+  return `<p>Kein Eintragr gefunden!</p>`
+}
+
 
 function getPokemonCardDialog(pokemon, currentIndex) {
   return `<article class="card mb-3 ${pokemon.types[0].type.name}">
