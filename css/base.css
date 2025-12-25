@@ -35,7 +35,15 @@
 }
 
 .primary-btn {
-  border: none;
+  border: 1px solid rgb(170, 170, 170);
+  background-color: rgb(235, 236, 234);
+  border-radius: 8px;
+  width: auto;
+  font-size: 16px;
+}
+
+.primary-btn:hover {
+ border: 1px solid rgb(170, 170, 170);
   background-color: chartreuse;
   border-radius: 8px;
   width: auto;
