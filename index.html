@@ -21,10 +21,9 @@
             <div class="header-logo-container">
                 <img src="./image/logo-pokemon-ball.png" alt="pokemon-ball.png">
             </div>
+            <h1>Pokedex</h1>
             <div class="search-container">
-                <input placeholder="Name oder Id" id="search" class="search-input" type="text" name="search">
-                <button onclick="searchPocemon()" class="primary-btn"  id="btn-search" type="button">Suchen</button>
-            </div>
+                    <input type="search" onchange="inputSearchPocemon()" placeholder="Name oder Id" id="search" class="search-input" name="search" aria-label="Search site content" />
         </header>
         <main id="content" class="container">
             <div id="loader-overlay" class="loader-overlay" aria-busy="false" role="status" aria-live="polite" hidden>
