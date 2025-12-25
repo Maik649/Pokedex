@@ -14,6 +14,10 @@ body:has(.dialog[open]) {
   overflow: hidden;
 }
 
+h1{
+  color: var(--primary-color-h1) !important;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -24,7 +28,7 @@ header {
 }
 
 .header-logo-container {
-  width: 200px;
+ 
   height: 70px;
 }
 
@@ -90,3 +94,33 @@ footer {
   width: 90px;
 }
 
+@media (max-width:460px) {
+  header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header-logo-container {
+    width: 100%; 
+    height: 100%;
+    text-align: center;
+}
+
+.search-container {
+    height: auto;
+    width: auto;
+}
+
+.search-input {
+     margin-right: 0px; 
+}
+
+.dialog {
+    
+    height: 700px;
+    width: auto;
+}
+}

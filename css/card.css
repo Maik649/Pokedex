@@ -30,6 +30,10 @@ h5 h6 {
   border: none !important;
 }
 
+.card-header img {
+  width: auto !important;
+}
+
 .types-content {
   display: flex;
   justify-content: space-around;
@@ -132,7 +136,7 @@ ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 !important;
+  padding: 3px !important;
   background-color: lightgrey !important;
   border-bottom: 1px slategrey solid !important;
 }
@@ -150,4 +154,35 @@ ul {
   text-align: center;
   font-size: large;
   padding: 0;
+}
+
+@media (max-width: 460px) {
+
+  .card{
+    width: 15rem !important;
+  } 
+
+  .card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    border: none !important;
+  }
+
+  .card-header img {
+    width: 96px !important;
+  }
+
+  .link-content {
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: row;
+    font-size: smaller;
+    padding: 4px;
+  }
+  .mb-3 {
+    margin-bottom: 0.5rem !important;
+    margin: 0;
+  }
 }
