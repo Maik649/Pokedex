@@ -16,7 +16,6 @@ function getNotPokemon(){
   return `<p>Kein Eintragr gefunden!</p>`
 }
 
-
 function getPokemonCardDialog(pokemon, currentIndex) {
   return `<article class="card mb-3 ${pokemon.types[0].type.name}">
             <div class="card-header">
@@ -25,10 +24,10 @@ function getPokemonCardDialog(pokemon, currentIndex) {
               <p class="card-id">#${pokemon.id}</p>
             </div>
             <nav class="link-content">
-              <a onclick="aboutCardPocemon(${currentIndex})" href="#" class="card-link">About</a>
-              <a onclick="baseStatCardPocemon(${currentIndex})" href="#" class="card-link">Base Stats</a>
-              <a onclick="shinyCardPocemon(${currentIndex})" href="#" class="card-link">Shiny</a>
-              <a onclick="evoCardPocemon(${currentIndex})" href="#" class="card-link">Evolution</a>
+              <a onclick="aboutCardPokemon(${currentIndex})" href="#" class="card-link">About</a>
+              <a onclick="baseStatCardPokemon(${currentIndex})" href="#" class="card-link">Base Stats</a>
+              <a onclick="shinyCardPokemon(${currentIndex})" href="#" class="card-link">Shiny</a>
+              <a onclick="evoCardPokemon(${currentIndex})" href="#" class="card-link">Evolution</a>
             </nav>
               <div id="card-body-content" class="card-body-content"></div>
             <div class="card-footer">
@@ -100,6 +99,6 @@ function getShinyCardDialog(pokemon,pokemon2) {
 
 function getEvoCardDialog(pokemon4) {
   return `<div class="card-evo-content">
-  <span>${pokemon4.chain.species.name.charAt(0).toUpperCase() +pokemon4.chain.species.name.slice(1)} ></span><span>${pokemon4.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemon4.chain.evolves_to[0].species.name.slice(1)} ></span> <span>${pokemon4.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemon4.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}</span>
+  <span>${pokemon4.chain.species.name === undefined?"":pokemon4.chain.species.name.charAt(0).toUpperCase() +pokemon4.chain.species.name.slice(1)} ></span><span>${pokemon4.chain.evolves_to[0].species.name === undefined? "":pokemon4.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + pokemon4.chain.evolves_to[0].species.name.slice(1)} ></span> <span>${pokemon4.chain.evolves_to[0].evolves_to[0] === undefined? "":pokemon4.chain.evolves_to[0].evolves_to[0].species.name.charAt(0).toUpperCase() + pokemon4.chain.evolves_to[0].evolves_to[0].species.name.slice(1)}</span>
   </div>`;
 }
