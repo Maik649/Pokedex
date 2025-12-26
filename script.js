@@ -6,6 +6,18 @@ let allPokemmons = [];
 let inputValue = document.getElementById("search");
 let dialogCard = document.getElementById("dialog-content");
 
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+if (inputValue) {
+  inputValue.addEventListener('input', debounce(inputSearchPokemon, 300));
+}
+
 async function init() {
   await pokemonCard();
 }
@@ -102,17 +114,46 @@ async function evoCardPokemon(i) {
 }
 
 async function inputSearchPokemon() {
-  for (let i = 0; i < allPokemmons.length; i++) {
-    let pokemon = allPokemmons[i];
-    let button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
-    let search = inputValue.value.trim();
+  const pokemonsEl = document.getElementById("pokemons");
+  const searchRaw = inputValue.value.trim();
 
-    if (search == "") {
-      document.getElementById("pokemons").innerHTML = getNotPokemon(pokemon, i);
+  if (searchRaw === "") {
+    let html = '';
+    for (let i = 0; i < allPokemmons.length; i++) {
+      const pokemon = allPokemmons[i];
+      const button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
+      html += getPokemonCard(pokemon, i, button2);
     }
-    if (inputValue.value == pokemon.id || inputValue.value == pokemon.name) {
-      document.getElementById("pokemons").innerHTML = getPokemonCard(pokemon,i,button2);
+    pokemonsEl.innerHTML = html;
+    return;
+  }
+
+  const search = searchRaw.toLowerCase();
+  const isNumeric = /^\d+$/.test(search);
+  const matches = [];
+
+  for (let i = 0; i < allPokemmons.length; i++) {
+    const pokemon = allPokemmons[i];
+    const nameLower = pokemon.name.toLowerCase();
+    const idStr = String(pokemon.id);
+    let matched = false;
+
+    if (isNumeric) {
+      if (idStr.startsWith(search)) matched = true;
+    } else {
+      if (search.length >= 3 && nameLower.startsWith(search)) matched = true;
     }
+
+    if (matched) {
+      const button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
+      matches.push(getPokemonCard(pokemon, i, button2));
+    }
+  }
+
+  if (matches.length > 0) {
+    pokemonsEl.innerHTML = matches.join('');
+  } else {
+    pokemonsEl.innerHTML = '<p>Kein Pokémon gefunden</p>';
   }
 }
 
