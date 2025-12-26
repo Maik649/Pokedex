@@ -27,6 +27,13 @@
   padding: 0 !important;
 }
 
+.limit-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1440px !important;
+  width: 100%;
+}
+
 .mor-btn-container {
   display: flex;
   justify-content: center;
@@ -43,7 +50,7 @@
 }
 
 .primary-btn:hover {
- border: 1px solid rgb(170, 170, 170);
+  border: 1px solid rgb(170, 170, 170);
   background-color: chartreuse;
   border-radius: 8px;
   width: auto;

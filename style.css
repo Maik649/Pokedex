@@ -9,7 +9,7 @@ body {
 }
 
 body:has(.dialog[open]) {
-  overflow: hidden;
+   overflow: hidden; 
 }
 
 h1 {
@@ -18,7 +18,7 @@ h1 {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 85px;
   background-color: var(--primary-bg-color);
@@ -41,6 +41,7 @@ main {
 }
 
 .container {
+  max-width: 1440px !important;
   min-height: calc(100vh - 170px) !important;
 }
 

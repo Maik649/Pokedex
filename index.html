@@ -17,13 +17,16 @@
     </head>
 
     <body onload="init()">
+      
         <header>
+            <div class="limit-content">
             <div class="header-logo-container">
                 <img src="./image/logo-pokemon-ball.png" alt="pokemon-ball.png">
             </div>
             <h1>Pokedex</h1>
             <div class="search-container">
                     <input type="search" onchange="inputSearchPokemon()" placeholder="Name oder Id" id="search" class="search-input" name="search" aria-label="Search site content" />
+            </div>
         </header>
         <main id="content" class="container">
             <div id="loader-overlay" class="loader-overlay" aria-busy="false" role="status" aria-live="polite" hidden>
@@ -31,7 +34,7 @@
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-            <div id="pocemons" class="container-xxl"></div>
+            <div id="pokemons" class="container-xxl"></div>
             <dialog class="dialog" closedby="any" id="dialog-content">
                 <section id="card" class="card-section"></section>
             </dialog>
@@ -44,6 +47,7 @@
                 <img src="./image/logo-pokemon-ball.png" alt="">
             </div>
         </footer>
+       
         <script src="script.js"></script>
         <script src="scrips/templade.js"></script>
     </body>
