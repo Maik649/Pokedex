@@ -47,7 +47,7 @@ async function pokemonCard() {
       pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1);
       button2;
     }
-    document.getElementById("pocemons").innerHTML += getPokemonCard(pokemon,i,button2);
+    document.getElementById("pokemons").innerHTML += getPokemonCard(pokemon,i,button2);
   }
 }
 
@@ -102,20 +102,16 @@ async function evoCardPokemon(i) {
 }
 
 async function inputSearchPokemon() {
-  // let ergebnis = allPokemmons.find(search => search.name);
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
-    let button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${
-      pokemon.types.length == 1 ? "" : pokemon.types[1].type.name
-    }.png" alt="${pokemon.name}"></button>`;
+    let button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
     let search = inputValue.value.trim();
 
     if (search == "") {
-      document.getElementById("pocemons").innerHTML = getNotPokemon(pokemon, i);
+      document.getElementById("pokemons").innerHTML = getNotPokemon(pokemon, i);
     }
-
     if (inputValue.value == pokemon.id || inputValue.value == pokemon.name) {
-      document.getElementById("pocemons").innerHTML = getPokemonCard(pokemon,i,button2);
+      document.getElementById("pokemons").innerHTML = getPokemonCard(pokemon,i,button2);
     }
   }
 }
@@ -136,7 +132,7 @@ async function showlRight(i) {
 }
 
 async function morePocemon() {
-  document.getElementById("pocemons").innerHTML = "";
+  document.getElementById("pokemons").innerHTML = "";
   offset = offset += 20;
   BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
   await pokemonCard();
