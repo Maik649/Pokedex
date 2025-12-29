@@ -6,6 +6,15 @@ let allPokemmons = [];
 let inputValue = document.getElementById("search");
 let dialogCard = document.getElementById("dialog-content");
 
+function initTooltips() {
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  tooltipTriggerList.forEach(el => {
+    if (!bootstrap.Tooltip.getInstance(el)) {
+      new bootstrap.Tooltip(el);
+    }
+  });
+} 
+
 function debounce(func, wait) {
   let timeout;
   return function(...args) {
@@ -52,7 +61,7 @@ async function pokemonCard() {
   await pokomeonData(allPokemmons);
   for (let i = 0; i < allPokemmons.length; i++) {
     let pokemon = allPokemmons[i];
-    let button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
+    let button2 = newFunction(pokemon);
     if (pokemon.types.length == 1) {
       pokemon.types[0].type.name.charAt(0).toUpperCase() +pokemon.types[0].type.name.slice(1);
     } else {
@@ -60,7 +69,12 @@ async function pokemonCard() {
       button2;
     }
     document.getElementById("pokemons").innerHTML += getPokemonCard(pokemon,i,button2);
+    initTooltips();
   }
+} 
+
+function newFunction(pokemon) {
+  return `<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="${pokemon.types.length == 1 ? '' : pokemon.types[1].type.name}"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
 }
 
 async function cardDialog(i) {
@@ -121,8 +135,9 @@ async function inputSearchPokemon() {
     let html = '';
     for (let i = 0; i < allPokemmons.length; i++) {
       const pokemon = allPokemmons[i];
-      const button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
+      const button2 = `<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="${pokemon.types.length == 1 ? '' : pokemon.types[1].type.name}"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
       html += getPokemonCard(pokemon, i, button2);
+      initTooltips();
     }
     pokemonsEl.innerHTML = html;
     return;
@@ -145,13 +160,15 @@ async function inputSearchPokemon() {
     }
 
     if (matched) {
-      const button2 = `<button id="btn-icon-button" class="type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
+      const button2 = `<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="${pokemon.types.length == 1 ? '' : pokemon.types[1].type.name}"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types.length == 1 ? "" : pokemon.types[1].type.name}.png" alt="${pokemon.name}"></button>`;
       matches.push(getPokemonCard(pokemon, i, button2));
+       initTooltips();
     }
   }
 
   if (matches.length > 0) {
     pokemonsEl.innerHTML = matches.join('');
+    initTooltips();
   } else {
     pokemonsEl.innerHTML = '<p>Kein Pokémon gefunden</p>';
   }

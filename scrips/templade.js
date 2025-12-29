@@ -7,8 +7,7 @@ function getPokemonCard(pokemon, i, button2) {
     <span class="card-id">#${pokemon.id}</span>
       </div>
   <div id="button-content" class="card-footer">
-  <button type="button" id="btn-icon-button" class=" type-btn"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>
-                  ${pokemon.types.length == 1 ? "":button2}
+  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="${pokemon.types.length == 1 ? "" : pokemon.types[0].type.name}"><img id="cardImgHeder" class="type-img" src="./image/icons/${pokemon.types[0].type.name}.png" alt="${pokemon.name}"></button>${pokemon.types.length == 1 ? "": button2 }
     </article>`;
 }
 
